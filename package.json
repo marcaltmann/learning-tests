@@ -4,7 +4,7 @@
   "description": "Tests for me to learn",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/marcaltmann/learning-tests#readme",
   "devDependencies": {
-    "jasmine": "^2.8.0"
+    "babel-jest": "^21.2.0",
+    "babel-preset-es2015": "^6.24.1",
+    "jest": "^21.2.1"
   }
 }
