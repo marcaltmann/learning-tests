@@ -1,0 +1,19 @@
+{
+  "name": "learning-tests",
+  "version": "1.0.0",
+  "description": "Tests for me to learn",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcaltmann/learning-tests.git"
+  },
+  "author": "Marc Altmann <marcaltmann@posteo.de>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcaltmann/learning-tests/issues"
+  },
+  "homepage": "https://github.com/marcaltmann/learning-tests#readme"
+}
