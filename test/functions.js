@@ -58,7 +58,15 @@ describe('function', function() {
       var assignedFunction = function() { return 'hello'; };
     });
 
+    it('can be defined dynamically', function() {
+      const sum = new Function('a', 'b', 'return a + b;');
+
+      expect(sum).to.be.a('function');
+      expect(sum(3, 4)).to.equal(7);
+    });
+
     it('simulate module style', function() {
+      // Test if f1 knows about f2, does not really belong here.
       const f1 = function() {
         return f2();
       };
