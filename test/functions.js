@@ -8,6 +8,18 @@ describe('functions', function() {
       expect(typeof f).to.equal('function');
     });
 
+    it('should print the whole function when calling toString()', function() {
+      const f = function f1() { return 'hello'; };
+
+      expect(f.toString()).to.equal('function f1() { return \'hello\'; }');
+    });
+
+    it('should return undefined if the return statement is missing', function() {
+      const f = function() {};
+
+      expect(f()).to.be.undefined;
+    });
+
     it('should be an object', function() {
       const f = function() {};
       f.someProperty = 'hello';
