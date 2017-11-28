@@ -27,6 +27,14 @@ describe('function', function() {
       expect(f).to.have.property('someProperty');
       expect(f.someProperty).to.equal('hello');
     });
+
+    it('should return number of formal arguments with length', function() {
+      const a = function(a, b) { return a + b; };
+      const b = function(a) { return a; };
+
+      expect(a.length).to.equal(2);
+      expect(b.length).to.equal(1);
+    });
   });
 
   describe('definitions', function() {
