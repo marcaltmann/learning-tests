@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 
-describe('functions', function() {
+describe('function', function() {
   describe('basics', function() {
     it('should be of type "function"', function() {
       const f = function() {};
@@ -71,6 +71,26 @@ describe('functions', function() {
       const expected = 'hello';
 
       expect(actual).to.equal(expected);
+    });
+  });
+
+  describe('names (used in stack traces)', function() {
+    it('has a name', function() {
+      function f() {
+      }
+
+      expect(f.name).to.equal('f');
+    });
+
+    it('has a name when anonymous but assigned', function() {
+      const ahh = function() {
+      };
+
+      expect(ahh.name).to.equal('ahh');
+    });
+
+    it('has no name (or empty name) when completely anonymous', function() {
+      expect((function() {}).name).to.equal('');
     });
   });
 
