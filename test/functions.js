@@ -29,6 +29,51 @@ describe('functions', function() {
     });
   });
 
+  describe('definitions', function() {
+    it('can be defined as a declaration', function() {
+      function declaredFunction() {
+        return 'hello';
+      }
+
+      expect(declaredFunction()).to.equal('hello');
+    });
+
+    it('can be declared after being called', function() {
+      expect(declaredFunction()).to.equal('hello');
+
+      function declaredFunction() {
+        return 'hello';
+      }
+    });
+
+    it('can be defined as an expression', function() {
+      var assignedFunction = function() { return 'hello'; };
+
+      expect(assignedFunction()).to.equal('hello');
+    });
+
+    it('cannot be defined as an expression after being called', function() {
+      expect(assignedFunction).to.be.undefined;
+
+      var assignedFunction = function() { return 'hello'; };
+    });
+
+    it('simulate module style', function() {
+      const f1 = function() {
+        return f2();
+      };
+
+      const f2 = function() {
+        return 'hello';
+      };
+
+      const actual = f1();
+      const expected = 'hello';
+
+      expect(actual).to.equal(expected);
+    });
+  });
+
   describe('arrow functions', function() {
     it('should also be of type "function"', function() {
       const f = () => {};
