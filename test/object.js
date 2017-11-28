@@ -1,4 +1,4 @@
-const should = require('should');
+const expect = require('chai').expect;
 
 describe('Object', function() {
   describe('property', function() {
@@ -6,14 +6,14 @@ describe('Object', function() {
       const object = {
         world: 'world',
       };
-      should.not.exist(object.hello);
+      expect(object.hello).to.be.undefined;
     });
 
     it('should exist if set', function() {
       const object = {
         world: 'world',
       };
-      should.exist(object.world);
+      expect(object.world).not.to.be.undefined;
     });
   });
 });
