@@ -1,4 +1,4 @@
-const should = require('should');
+require('should');
 
 describe('Array', () => {
   describe('#indexOf()', () => {
