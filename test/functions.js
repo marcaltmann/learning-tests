@@ -35,6 +35,15 @@ describe('function', function() {
       expect(a.length).to.equal(2);
       expect(b.length).to.equal(1);
     });
+
+    it('should have an arguments object', function() {
+      function f() {
+        expect(arguments).to.be.arguments;
+        expect(arguments.length).to.equal(2);
+      }
+
+      f(21, 42);
+    });
   });
 
   describe('definitions', function() {
@@ -115,6 +124,12 @@ describe('function', function() {
       const f = () => {};
 
       expect(typeof f).to.equal('function');
+    });
+  });
+
+  describe('the global object', function() {
+    it('exists', function() {
+      expect(global.String).to.be.a('function');
     });
   });
 });
