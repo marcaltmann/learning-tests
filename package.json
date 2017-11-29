@@ -23,5 +23,8 @@
     "jsdom": "^11.0.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "d3": "^4.12.0"
   }
 }
