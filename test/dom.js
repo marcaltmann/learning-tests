@@ -1,8 +1,12 @@
-require('jsdom-global')();
+const jsdom = require('jsdom-global');
 const d3 = require('d3');
 const expect = require('chai').expect;
 
 describe('dom', function() {
+  beforeEach(function() {
+    jsdom();
+  });
+
   describe('basics', function() {
     it('has window', function() {
       expect(document).not.to.be.undefined;
@@ -46,17 +50,13 @@ describe('dom', function() {
         .data(dataset)
         .enter()
         .append('p')
-        .text('New paragraph!');
+        .text(d => d);
 
       const pCollection = document.getElementsByTagName('p');
       expect(pCollection.length).to.equal(5);
-      expect(Array.from(pCollection).map(p => p.textContent)).to.deep.equal([
-        'New paragraph!',
-        'New paragraph!',
-        'New paragraph!',
-        'New paragraph!',
-        'New paragraph!',
-      ]);
+      expect(Array.from(pCollection).map(p => p.textContent)).to.deep.equal(
+        ['5', '10', '15', '20', '25']
+      );
     });
 
     it('nodes with bound data should have a __data__ key', function() {
