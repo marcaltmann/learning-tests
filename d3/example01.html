@@ -13,7 +13,8 @@
         .data(dataset)
         .enter()
         .append('p')
-        .text(d => d);
+        .text(d => `I can count up to ${d}`)
+        .style('color', d => d > 15 ? 'red' : 'black');
     </script>
   </body>
 </html>
