@@ -20,11 +20,58 @@ describe('dom', function() {
   });
 
   describe('d3', function() {
-    it('works', function() {
-      d3.select('body').append('p').text('New paragraph!');
+    it('should work', function() {
+      d3.select('body')
+        .append('p')
+        .text('New paragraph!');
+
       const p = document.getElementsByTagName('p');
       expect(p.length).to.equal(1);
       expect(p[0].textContent).to.equal('New paragraph!');
+    });
+
+    it('nodes without bound data have should no __data__ key', function() {
+      d3.select('body')
+        .append('p')
+        .text('New paragraph!');
+
+      const selection = d3.selectAll('p');
+      expect(selection._groups[0][0]).not.to.have.key('__data__');
+    });
+
+    it('should render data', function() {
+      var dataset = [5, 10, 15, 20, 25];
+
+      d3.select('body').selectAll('p')
+        .data(dataset)
+        .enter()
+        .append('p')
+        .text('New paragraph!');
+
+      const pCollection = document.getElementsByTagName('p');
+      expect(pCollection.length).to.equal(5);
+      expect(Array.from(pCollection).map(p => p.textContent)).to.deep.equal([
+        'New paragraph!',
+        'New paragraph!',
+        'New paragraph!',
+        'New paragraph!',
+        'New paragraph!',
+      ]);
+    });
+
+    it('nodes with bound data should have a __data__ key', function() {
+      var dataset = [5, 10, 15, 20, 25];
+
+      d3.select('body').selectAll('p')
+        .data(dataset)
+        .enter()
+        .append('p')
+        .text('New paragraph!');
+
+      const selection = d3.selectAll('p');
+      const node = selection._groups[0][0];
+      expect(node).to.have.key('__data__');
+      expect(node.__data__).to.equal(5);
     });
   });
 });
