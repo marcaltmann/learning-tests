@@ -3,7 +3,7 @@ const d3 = require('d3');
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-describe('d3 basics', function() {
+describe('d3 chapter 6 (drawing)', function() {
   const dataset = [5, 10, 15, 20, 25];
 
   beforeEach(function() {
