@@ -1,7 +1,7 @@
 const d3 = require('d3');
 const expect = require('chai').expect;
 
-describe('d3 linear scales', function() {
+describe('d3 scales', function() {
   describe('general behaviour', function() {
     const scale = d3.scaleLinear();
 
@@ -28,7 +28,7 @@ describe('d3 linear scales', function() {
     });
   });
 
-  describe('mappings', function() {
+  describe('linear scale mappings', function() {
     const scale = d3.scaleLinear()
       .domain([100, 500])
       .range([10, 350]);
@@ -42,6 +42,32 @@ describe('d3 linear scales', function() {
     it('does not cut of output values, but interpolates', function() {
       expect(scale(50)).to.equal(-32.5);
       expect(scale(700)).to.equal(520);
+    });
+  });
+
+  describe('sqrt scale mappings', function() {
+    it('domain inputs are normalized before sqrt is applied', function() {
+      const scale = d3.scaleSqrt()
+        .domain([0, 1000])
+        .range([0, 1000]);
+
+      expect(scale(1000)).to.equal(1000);
+      expect(scale(750)).to.be.closeTo(866, 0.5);
+      expect(scale(500)).to.be.closeTo(707, 0.5);
+      expect(scale(250)).to.equal(500);
+      expect(scale(0)).to.equal(0);
+    });
+
+    it('and then scaled to the output range', function() {
+      const scale = d3.scaleSqrt()
+        .domain([0, 1000])
+        .range([0, 100]);
+
+      expect(scale(1000)).to.equal(100);
+      expect(scale(750)).to.be.closeTo(87, 0.5);
+      expect(scale(500)).to.be.closeTo(71, 0.5);
+      expect(scale(250)).to.equal(50);
+      expect(scale(0)).to.equal(0);
     });
   });
 

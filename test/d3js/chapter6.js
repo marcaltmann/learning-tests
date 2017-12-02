@@ -4,8 +4,6 @@ const sinon = require('sinon');
 const expect = require('chai').expect;
 
 describe('d3 chapter 6 (drawing)', function() {
-  const dataset = [5, 10, 15, 20, 25];
-
   beforeEach(function() {
     jsdom();
   });
@@ -13,7 +11,7 @@ describe('d3 chapter 6 (drawing)', function() {
   describe('append(\'svg\')', function() {
     it('creates an SVG', function() {
       d3.select('body').append('svg');
-      expect(document.getElementsByTagName('svg')).to.have.length(1);
+      expect(document.getElementsByTagName('svg')).to.have.lengthOf(1);
     });
 
     it('returns a selection', function() {
@@ -45,7 +43,7 @@ describe('d3 chapter 6 (drawing)', function() {
     });
 
     it('returns multiple nodes', function() {
-      expect(selection.nodes()).to.have.length(3);
+      expect(selection.nodes()).to.have.lengthOf(3);
     });
 
     it('can iterate over itself', function() {

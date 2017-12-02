@@ -13,7 +13,7 @@ describe('d3 basics', function() {
       .text('New paragraph!');
 
     const p = document.getElementsByTagName('p');
-    expect(p.length).to.equal(1);
+    expect(p).to.have.lengthOf(1);
     expect(p[0].textContent).to.equal('New paragraph!');
   });
 
@@ -36,7 +36,7 @@ describe('d3 basics', function() {
       .text(d => d);
 
     const pCollection = document.getElementsByTagName('p');
-    expect(pCollection.length).to.equal(5);
+    expect(pCollection).to.have.lengthOf(5);
     expect(Array.from(pCollection).map(p => p.textContent)).to.deep.equal(
       ['5', '10', '15', '20', '25']
     );
