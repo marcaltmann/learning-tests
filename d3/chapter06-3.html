@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>D3 Chapter 6</title>
+    <script src="/d3.js"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <script>
+      const w = 500;
+      const h = 50;
+
+      const svg = d3.select('body')
+        .append('svg')
+        .attr('width', w)
+        .attr('height', h);
+
+      const dataset = [5, 10, 15, 20, 25];
+
+      const circles = svg.selectAll('circle')
+        .data(dataset)
+        .enter()
+        .append('circle');
+
+      circles.attr('cx', (d, i) => (i * 50) + 25)
+             .attr('cy', h / 2)
+             .attr('r', d => d)
+             .attr('fill', 'yellow')
+             .attr('stroke', 'orange')
+             .attr('stroke-width', d => d / 2);
+    </script>
+  </body>
+</html>
