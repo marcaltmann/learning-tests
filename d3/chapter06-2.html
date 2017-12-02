@@ -22,12 +22,19 @@
         dataset.push(newNumber);
       }
 
-      d3.select('body').selectAll('div')
+      const divs = d3.select('body').selectAll('div')
         .data(dataset)
         .enter()
         .append('div')
         .classed('bar', true)
         .style('height', d => `${d * 5}px`);
+
+      function printSize(selection) {
+        console.log(selection.size());
+      };
+
+      divs.call(printSize);
+
     </script>
   </body>
 </html>

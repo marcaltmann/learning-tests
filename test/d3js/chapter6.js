@@ -53,5 +53,19 @@ describe('d3 basics', function() {
       selection.each(callback);
       expect(callback.calledThrice).to.be.true;
     });
+
+    it('can use call method', function() {
+      function setDimensions(selection, width, height) {
+        selection.attr('width', width);
+        selection.attr('height', height);
+      }
+      selection.call(setDimensions, 750, 250);
+
+      selection.each(function() {
+        const el = d3.select(this);
+        expect(parseInt(el.attr('width'))).to.equal(750);
+        expect(parseInt(el.attr('height'))).to.equal(250);
+      });
+    });
   });
 });
