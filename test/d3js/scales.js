@@ -45,6 +45,64 @@ describe('d3 scales', function() {
     });
   });
 
+  describe('clamping', function() {
+    const scale = d3.scaleLinear()
+      .domain([100, 500])
+      .range([10, 350])
+      .clamp(true);
+
+    it('cuts off, does not extrapolate', function() {
+      expect(scale(1000)).to.equal(350);
+      expect(scale(-500)).to.equal(10);
+    });
+  });
+
+  describe('rangeRound', function() {
+    const scale = d3.scaleLinear()
+      .domain([100, 500])
+      .rangeRound([10, 350]);
+
+    it('rounds range values to integers', function() {
+      expect(scale(50)).to.equal(-32); // would be -32.5 without rangeRound
+      expect(scale(45.323)).to.equal(-36); // would be -36.475 without rangeRound
+    });
+  });
+
+  describe('nicing', function() {
+    it('nices the domain to [0, 10] if it is very near', function() {
+      const scale = d3.scaleLinear()
+        .domain([0.42, 9.6])
+        .nice();
+
+      expect(scale.domain()).to.deep.equal([0, 10]);
+    });
+
+    it('nices the domain to [0, 10] if it is not so near', function() {
+      const scale = d3.scaleLinear()
+        .domain([0.999, 9.001])
+        .nice();
+
+      expect(scale.domain()).to.deep.equal([0, 10]);
+    });
+
+    it('does not nice the domain to [0, 10] at some point', function() {
+      const scale = d3.scaleLinear()
+        .domain([1, 9])
+        .nice();
+
+      expect(scale.domain()).to.deep.equal([1, 9]);
+    });
+
+    it('does strange things with the ticks count argument', function() {
+      // TODO: Explore further, also d3-array's tickStep()
+      const scale = d3.scaleLinear()
+        .domain([0.4, 9.6])
+        .nice(40);
+
+      expect(scale.domain()).to.deep.equal([0, 10]);
+    });
+  });
+
   describe('sqrt scale mappings', function() {
     it('domain inputs are normalized before sqrt is applied', function() {
       const scale = d3.scaleSqrt()
