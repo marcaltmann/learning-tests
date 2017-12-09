@@ -93,7 +93,7 @@ describe('d3 scales', function() {
       expect(scale.domain()).to.deep.equal([1, 9]);
     });
 
-    it('does strange things with the ticks count argument', function() {
+    it.skip('does strange things with the ticks count argument', function() {
       // TODO: Explore further, also d3-array's tickStep()
       const scale = d3.scaleLinear()
         .domain([0.4, 9.6])
