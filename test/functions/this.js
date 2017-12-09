@@ -1,4 +1,4 @@
-const expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('this in functions', function() {
   describe('behaviour in methods', function() {

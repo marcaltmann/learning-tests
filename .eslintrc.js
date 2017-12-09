@@ -6,6 +6,9 @@ const config = {
     node: true,
     mocha: true,
   },
+  parserOptions: {
+    sourceType: 'module',
+  },
   extends: 'eslint:recommended',
   rules: {
     indent: [
