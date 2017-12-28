@@ -1,22 +1,20 @@
-const expect = require('chai').expect;
+import test from 'ava';
 
-describe('Array', () => {
-  describe('#indexOf()', () => {
-    it('should return -1 when the value is not present', () => {
-      expect([1, 2, 3].indexOf(4)).to.equal(-1);
-    });
-  });
+test('indexOf returns -1 when the value is not present', (t) => {
+  const actual = [1, 2, 3].indexOf(4);
+  const expected = -1;
+  t.is(actual, expected);
+});
 
-  describe('#splice()', () => {
-    it('should alter original array', () => {
-      const original = [1, 2, 3, 4, 5];
-      original.splice(2, 2);
-      expect(original).to.eql([1, 2, 5]);
-    });
+test('splice should alter original array', (t) => {
+  const original = [1, 2, 3, 4, 5];
+  const actual = original.splice(2, 2);
+  const expected = [1, 2, 5];
+  t.is(actual, expected);
+});
 
-    it('should return spliced portion', () => {
-      const original = [1, 2, 3, 4, 5];
-      expect(original.splice(2, 2)).to.eql([3, 4]);
-    });
-  });
+test('splice should return spliced portion', (t) => {
+  const actual = [1, 2, 3, 4, 5].splice(2, 2);
+  const expected = [3, 4];
+  t.is(actual, expected);
 });
