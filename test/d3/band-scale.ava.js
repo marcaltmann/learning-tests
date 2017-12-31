@@ -1,5 +1,5 @@
-import { scaleBand } from 'd3-scale';
 import test from 'ava';
+import { scaleBand } from 'd3-scale';
 
 function basicScale() {
   return scaleBand()
