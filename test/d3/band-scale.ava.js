@@ -8,22 +8,19 @@ function basicScale() {
 }
 
 test('mapping', (t) => {
-  const scale = basicScale();
-  const actual = scale(2);
+  const actual = basicScale()(2);
   const expected = 40;
   t.is(actual, expected, 'domain value maps to start of the band within output range');
 });
 
 test('bandwidth', (t) => {
-  const scale = basicScale();
-  const actual = scale.bandwidth();
+  const actual = basicScale().bandwidth();
   const expected = 20;
   t.is(actual, expected);
 });
 
 test('step', (t) => {
-  const scale = basicScale();
-  const actual = scale.step();
+  const actual = basicScale().step();
   const expected = 20;
   t.is(actual, expected);
 });
